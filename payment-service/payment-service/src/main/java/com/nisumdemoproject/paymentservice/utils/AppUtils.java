@@ -1,5 +1,4 @@
 package com.nisumdemoproject.paymentservice.utils;
-
 import com.nisumdemoproject.paymentservice.dto.PaymentDto;
 import com.nisumdemoproject.paymentservice.entity.Payment;
 import org.springframework.beans.BeanUtils;

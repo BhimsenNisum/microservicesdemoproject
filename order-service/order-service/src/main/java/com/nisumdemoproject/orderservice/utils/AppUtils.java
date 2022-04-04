@@ -10,7 +10,6 @@ public class AppUtils {
         BeanUtils.copyProperties(order,orderDto);
         return orderDto;
     }
-
     public static Order dtoToEntity(OrderDto orderDto){
         Order order = new Order();
         BeanUtils.copyProperties(orderDto,order);
