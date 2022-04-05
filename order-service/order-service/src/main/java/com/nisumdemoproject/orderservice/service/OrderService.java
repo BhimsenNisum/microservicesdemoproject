@@ -4,6 +4,8 @@ import com.nisumdemoproject.orderservice.common.TransactionRequest;
 import com.nisumdemoproject.orderservice.common.TransactionResponse;
 import com.nisumdemoproject.orderservice.dto.OrderDto;
 import com.nisumdemoproject.orderservice.entity.Order;
+import com.nisumdemoproject.orderservice.mapper.OrderMapper;
+import com.nisumdemoproject.orderservice.mapper.PaymentMapper;
 import com.nisumdemoproject.orderservice.repository.OrderRepository;
 import com.nisumdemoproject.orderservice.utils.AppUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +27,11 @@ public class OrderService {
     @Autowired
     RestTemplate template;
 
+    private OrderMapper orderMapper;
+    private PaymentMapper  paymentMapper;
+
+    final static String url = "http://localhost:9797/payment/save";
+
     public TransactionResponse saveOrder(TransactionRequest request){
         LOGGER.info("****** saveOrder Service Is Called.....******");
         String response = "";
@@ -34,7 +41,7 @@ public class OrderService {
         payment.setAmount(order.getPrice());
 
         LOGGER.info("****** Payment Rest API Calling ******");
-        Payment paymentResponse = template.postForObject("http://localhost:9797/payment/save",payment,Payment.class);
+        Payment paymentResponse = template.postForObject(url,payment,Payment.class);
         response = paymentResponse.getPaymentStatus().equals("success")?"payment processing successful and order placed":"there is a failure in payment api order added to cart";
         repository.save(order);
         LOGGER.info("***** Order saved Successfully *****");
@@ -52,4 +59,5 @@ public class OrderService {
         LOGGER.info("***** Order Deleted By Id *****");
         return null;
     }
+
 }

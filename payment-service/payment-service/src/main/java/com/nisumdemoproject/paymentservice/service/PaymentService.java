@@ -4,16 +4,13 @@ import com.nisumdemoproject.paymentservice.entity.Payment;
 import com.nisumdemoproject.paymentservice.repository.PaymentRepository;
 import com.nisumdemoproject.paymentservice.utils.AppUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.annotations.common.util.impl.LoggerFactory;
-import org.jboss.logging.Logger;
+import static org.hibernate.tool.schema.SchemaToolingLogging.LOGGER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
-
-import static org.hibernate.tool.schema.SchemaToolingLogging.LOGGER;
 
 @Slf4j
 @Service
